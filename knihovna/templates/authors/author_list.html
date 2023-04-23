@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="display-4 text-center">Galerie autorů</h2>
+  <div class="row bg-dark mb-2">
+  {% for author in author_list %}
+    <div class="col-md-3 col-lg-2 pt-3 pb-3 d-flex flex-column">
+      {% if author.fotografie %}
+      <img src="{{ author.fotografie.url }}" alt="{{ author }}" class="rounded img-fluid">
+      {% endif %}
+      <p class="text-center text-light mt-auto p-1"><a href="{% url 'author_detail' author.pk %}" class="text-light">{{ author.jmeno }} <b>{{ author.prijmeni }}</b></a> <span class="badge bg-info text-white">{{ author.kniha_set.count }}</span></p>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock %}
